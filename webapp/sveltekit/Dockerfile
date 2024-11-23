@@ -7,7 +7,7 @@ COPY . .
 RUN npm run build
 RUN npm prune --production
 
-FROM node:18-alpine
+FROM node:22-alpine
 WORKDIR /app
 # Copiez les fichiers générés dans l'image finale
 COPY --from=builder /app/build build/
