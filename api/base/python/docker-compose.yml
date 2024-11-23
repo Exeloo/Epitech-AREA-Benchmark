@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  fastapi-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: fastapi-service:dev
+    ports:
+      - "80:80"
