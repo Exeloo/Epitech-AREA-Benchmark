@@ -1,0 +1,28 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+input AuthPasswordInput {
+  email: String!
+  password: String!
+}
+
+input AuthRefreshTokenInput {
+  refreshToken: String!
+}
+
+type AuthTokenResponse {
+  refreshToken: String!
+  token: String!
+  tokenExpiresAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  login(data: AuthPasswordInput!): AuthTokenResponse!
+  refreshToken(data: AuthRefreshTokenInput!): AuthTokenResponse!
+}

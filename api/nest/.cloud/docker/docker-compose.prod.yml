@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  area-api:
+    image: exeloo/area-api:${TAG}
+    build:
+      target: production
+      context: ../..
+      dockerfile: ".cloud/docker/Dockerfile"
+    restart: unless-stopped
+    ports:
+      - 3000:3000
