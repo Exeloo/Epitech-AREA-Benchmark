@@ -17,7 +17,7 @@ creds = {
     "auth_uri": "https://accounts.google.com/o/oauth2/auth",
     "token_uri": "https://oauth2.googleapis.com/token",
     "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-f9n9d%40area-benchmark-4105c.iam.gserviceaccount.com",
+    "client_x509_cert_url": env["CLIENT_CERT_URL"],
     "universe_domain": "googleapis.com",
 }
 
@@ -26,11 +26,11 @@ firebase_admin.initialize_app(cred)
 db = firestore.client()
 app = FastAPI()
 
-@app.post("/register/{name}")
-async def register(name, body):
+@app.post("/register")
+async def register(body):
     try:
         json_data = json.loads(body)
-        user_ref = db.collection('users').document(name)
+        user_ref = db.collection('users').document(json_data.get("name"))
         user_ref.set(json_data)
 
         if "password" in json_data:
